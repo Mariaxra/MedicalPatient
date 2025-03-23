@@ -15,10 +15,11 @@ private:
     int RespiratoryRate;
     int BloodPressure;
     std::string encryptData(const std::string &data) const; 
+    bool Wasencrypt = false;
    
 
 public:
-    Patient(std::string name, int age, double temp, int hr, int rr, int bp);
+    Patient(std::string name, int age, double temp, int hr, int rr, int bp , bool e);
     ~Patient();
     void Print_Patient() const;
     std::string getEncryptedData() const;

@@ -2,9 +2,10 @@
 #include <fstream>
 #include <stdexcept>
 
-Patient::Patient(std::string name, int age, double temp, int hr, int rr, int bp)
-    : name(name), age(age), BodyTemperature(temp), HeartRate(hr), RespiratoryRate(rr), BloodPressure(bp)
+Patient::Patient(std::string name, int age, double temp, int hr, int rr, int bp , bool encrypt)
+    : name(name), age(age), BodyTemperature(temp), HeartRate(hr), RespiratoryRate(rr), BloodPressure(bp) , Wasencrypt(encrypt)
 {
+    if(!Wasencrypt){
     if (name.empty())
     {
         throw std ::invalid_argument("Error ! empty name is invaild.");
@@ -57,8 +58,10 @@ Patient::Patient(std::string name, int age, double temp, int hr, int rr, int bp)
     }
 }
 
+}
 Patient::~Patient()
 {
+    if(!Wasencrypt){
     std::string encryptedData = getEncryptedData();
 std::ofstream file("patients_data.txt", std::ios::app);
 if (file.is_open())
@@ -66,7 +69,9 @@ if (file.is_open())
     file << encryptedData << '\n';
     file.close();
 }
-   
+Wasencrypt = true;
+    }
+  
 }
 
 void Patient::Print_Patient() const

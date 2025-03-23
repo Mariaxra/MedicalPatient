@@ -13,6 +13,8 @@ private:
 public:
     void Add_Patient(const Patient &patient);
     void Print() const;
+    void ReadFromFile();
+ 
 };
 
 #endif
